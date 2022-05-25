@@ -12,8 +12,8 @@ class Pedido(models.Model):
 class Producto(models.Model):
     idProducto = models.IntegerField(primary_key = True,verbose_name = 'Id de producto')
     Nombre_producto = models.CharField(max_length = 20, verbose_name = 'N_producto')
-    valor = models.IntegerField(max_length=15,verbose_name="valor")
-    cantidad = models.IntegerField(max_length=10,verbose_name="cantidad")
+    valor = models.IntegerField(verbose_name="valor")
+    cantidad = models.IntegerField(verbose_name="cantidad")
     def __str__(self):
         return self.Producto
 
@@ -31,4 +31,19 @@ class Empleado(models.Model):
     def __str__  (self):
         return self.Empleado
 
+class Cliente(models.Model):
+    rut_cliente = models.CharField(max_length=10)
+    nombre_cliente = models.CharField(max_length=50)
+    apellido_cliente = models.CharField(max_length=50)
+    celular_cliente = models.CharField(max_length=12)
+    email_cliente = models.EmailField(max_length=50)
+    contrasena_cliente = models.CharField(max_length=50)
+    confirmar_contrasena_cliente = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Todos los Clientes'
+        unique_together = ('rut_cliente','celular_cliente','email_cliente')
+    
+class Model
+image = models.ImageField(upload_to='images/')
