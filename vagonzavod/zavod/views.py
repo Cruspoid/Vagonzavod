@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
 # Create your views here.
@@ -14,6 +14,7 @@ def Productos(request):
     producto = Producto.objects.all()
     context = {'producto':producto}
     return render(request, 'productos.html', context)
+
 
 class CreateUser(CreateView):
     model = Cliente
@@ -35,3 +36,20 @@ class CreateUser(CreateView):
         cliente.save()
         return super(CreateUser, self).form_valid(form)
 
+class DetalleProducto(DetailView):
+    model = Producto
+    template_name = "detalle_producto.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(DetalleProducto, self).get_context_data(**kwargs)
+        context['titulo'] = 'Motor del mes'
+        return context
+
+    def get_queryset(self):
+        print('************')
+        palabra_clave = self.request.GET.get("kword",'')
+        lista = Producto.objects.filter(
+            first_name=palabra_clave
+        )
+        return lista
+    

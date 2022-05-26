@@ -7,6 +7,7 @@ urlpatterns = [
     # path('', views.all_products, name ='all_products'),
     path('', views.Home, name='home'),
     path('productos/', views.Productos, name='productos'),
-    path('registrar/', views.CreateUser.as_view(), name='registrar_usuario'),
+    path('detalle_producto/<pk>', views.DetalleProducto.as_view(), name='detalle_producto'),
+    path('registrar/', views.CreateUser.as_view(), name='registrar_cliente'),
     
 ]

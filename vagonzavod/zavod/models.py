@@ -15,6 +15,7 @@ class Producto(models.Model):
     image = models.ImageField(upload_to='images', verbose_name='Imagen')
     valor = models.IntegerField(verbose_name="valor")
     cantidad = models.IntegerField(verbose_name="cantidad")
+    descripcion = models.CharField(verbose_name='descripcion', max_length=200)
     
     class Meta:   
         verbose_name = 'Productos'
