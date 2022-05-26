@@ -11,14 +11,14 @@ class Pedido(models.Model):
 
 class Producto(models.Model):
     idProducto = models.AutoField(primary_key = True,verbose_name = 'Id de producto')
-    nombre_producto = models.CharField(max_length = 20, verbose_name = 'Nombre de producto')
+    nombre_producto = models.CharField(max_length = 100, verbose_name = 'Nombre de producto')
     image = models.ImageField(upload_to='images', verbose_name='Imagen')
     valor = models.IntegerField(verbose_name="valor")
     cantidad = models.IntegerField(verbose_name="cantidad")
     
     class Meta:   
-        verbose_name = 'Imagenes'
-        verbose_name_plural = 'Todas las Imagenes'
+        verbose_name = 'Productos'
+        verbose_name_plural = 'Todos los Productos'
 
 class Estado(models.Model):
     idEstado = models.AutoField(primary_key = True,verbose_name = 'Id de Estado')

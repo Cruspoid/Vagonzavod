@@ -19,6 +19,7 @@ admin.site.register(Imagenes, ImagenesAdmin)
 
 class ProductoAdmin(admin.ModelAdmin):
     list_display=("nombre_producto","cantidad")
+    
 admin.site.register(Producto, ProductoAdmin)
 
 
