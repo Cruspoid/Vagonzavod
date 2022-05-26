@@ -28,7 +28,7 @@ class CreateUser(CreateView):
         'confirmar_contrasena_cliente',
         'celular_cliente',
     ]
-    success_url = reverse_lazy('app_zavod:registrar_usuario')
+    success_url = reverse_lazy('app_zavod:home')
     
     def form_valid(self, form):
         #logica del proceso
