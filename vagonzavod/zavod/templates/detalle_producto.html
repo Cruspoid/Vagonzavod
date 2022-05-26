@@ -5,7 +5,7 @@
 
 
 
-<div class="container">
+<form class="container" method="GET">{% csrf_token%}
 
     <div class="row align-items-center">
 
@@ -27,12 +27,8 @@
             
           </div>
           
-      </div>
-      
+      </div>     
       <div class="card p-3">
-
-           
-            
             <div class="card-body">
               <p class="card-text">{{producto.descripcion}}</p>
             </div>
@@ -44,7 +40,7 @@
           
              
             </div>
-          </div>
+        </form>
 
 
       

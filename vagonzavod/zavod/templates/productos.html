@@ -11,7 +11,7 @@
             {% for e in producto%}
           <div class="card-group col card-deck">
             <div class="card" style="width: 18rem;">
-                <a href=""><img src="{{e.image.url}}" class="card-img-top" alt="..."></a> 
+                <a href="{% url 'app_zavod:detalle_producto' e.idProducto %}"><img src="{{e.image.url}}" id="kword" name="kword"class="card-img-top" alt="..."></a> 
                 <div class="card-body">
                   <p class="card-text"><h3>{{e.nombre_producto}}</h3><h2>${{e.valor}}</h2></p>
                 </div>

@@ -46,10 +46,9 @@ class DetalleProducto(DetailView):
         return context
 
     def get_queryset(self):
-        print('************')
         palabra_clave = self.request.GET.get("kword",'')
         lista = Producto.objects.filter(
-            first_name=palabra_clave
+            idProducto__icontains=palabra_clave
         )
         return lista
     
