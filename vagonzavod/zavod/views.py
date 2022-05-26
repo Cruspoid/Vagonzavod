@@ -1,13 +1,19 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
-from .models import Cliente, Producto
+from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
 # Create your views here.
 
 
 def Home(request):
-    home = Producto.objects.all()
-    return render(request, 'home.html', {'home':home})
+    home = Imagenes.objects.all()
+    context = {'home':home}
+    return render(request, 'home.html', context)
+
+def Productos(request):
+    producto = Producto.objects.all()
+    context = {'producto':producto}
+    return render(request, 'productos.html', context)
 
 class CreateUser(CreateView):
     model = Cliente
@@ -28,3 +34,4 @@ class CreateUser(CreateView):
         cliente = form.save()
         cliente.save()
         return super(CreateUser, self).form_valid(form)
+
