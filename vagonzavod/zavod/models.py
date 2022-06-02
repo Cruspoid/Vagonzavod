@@ -10,12 +10,23 @@ class Pedido(models.Model):
         return self.Pedido
 
 class Producto(models.Model):
+    
+    Tipo_motor = (
+        ('DIESEL', 'DIESEL'),
+        ('PETROL', 'PETROL'),
+        ('GAS', 'GAS'),
+    )
+    
+    
     idProducto = models.AutoField(primary_key = True,verbose_name = 'Id de producto')
     nombre_producto = models.CharField(max_length = 100, verbose_name = 'Nombre de producto')
     image = models.ImageField(upload_to='images', verbose_name='Imagen')
     valor = models.IntegerField(verbose_name="valor")
     cantidad = models.IntegerField(verbose_name="cantidad")
     descripcion = models.CharField(verbose_name='descripcion', max_length=200)
+    tipo_motor = models.CharField('Tipo de motor', max_length=10, choices=Tipo_motor)
+    caballos_fuerza = models.IntegerField()
+    peso = models.CharField(max_length=10)
     
     class Meta:   
         verbose_name = 'Productos'
