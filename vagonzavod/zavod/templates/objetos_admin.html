@@ -32,6 +32,7 @@
                     <th scope="col">IMAGEN</th>
                     <th scope="col">VALOR</th>
                     <th scope="col">CANTIDAD</th>
+                    <th scope="col">TIPO</th>
                     <th scope="col">DESCRIPCIÓN</th>
                   </tr>
                 </thead>
@@ -44,6 +45,7 @@
                             <img src="{{p.image.url}}"></td>
                         <td>{{p.valor}}</td>
                         <td>{{p.cantidad}}</td>
+                        <td>{{p.tipo_motor}}</td>
                         <td class="desc">{{p.descripcion}}</td>
 
                         <td><a class="btn btn-warning" href="{% url 'app_zavod:detalle_producto' p.idProducto %}">Ver</a></td>
