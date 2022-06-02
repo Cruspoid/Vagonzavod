@@ -16,12 +16,19 @@
           </div>
       </div>
 
-      <div class=" col card p-3 text-right">
-        <div class="col" style="width: 18rem;">
+      <div class=" col card ">
+        <div class="card-text" >
            
             
             <div class="card-body">
-              <p class="card-text">{{producto.nombre_producto}}<h3>${{producto.valor}}</h3></p>
+              <p class="card-text">
+                <h4>Nombre producto: {{producto.nombre_producto}}</h4>
+                <h4>Tipo de motor: </h4>
+                <h4>Caballos de fuerza: </h4>
+                <h4>Peso: </h4>
+                <h4>Valor: ${{producto.valor}}</h4>
+
+              </p>
               
             </div>
             
@@ -30,7 +37,7 @@
       </div>     
       <div class="card p-3">
             <div class="card-body">
-              <p class="card-text">{{producto.descripcion}}</p>
+              <h5 class="card-text">{{producto.descripcion}}</h5>
             </div>
   
       </div>

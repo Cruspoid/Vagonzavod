@@ -20,16 +20,13 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Vazangod</a>
+              <a class="navbar-brand" href="{% url 'app_zavod:home' %}"><img src="{% static 'img/logo.png' %}" width="50px" style="margin-right: 10px;" alt="Logo de SLee Dw">Vazangod</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                  <li class="nav-item ">
-                    <a class="nav-link"  href="{% url 'app_zavod:home' %}">Inicio</a>
-                  </li>
                   <li class="nav-item ">
                     <a class="nav-link"  href="{% url 'app_zavod:productos' %}">Productos</a>
                   </li>
@@ -64,14 +61,14 @@
             <div class="box">
                 <figure>
                     <a href="#">
-                        <img src="#" alt="Logo de SLee Dw">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo de SLee Dw">
                     </a>
                 </figure>
             </div>
             <div class="box">
                 <h2>SOBRE NOSOTROS</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
+                <p>Vagonzavod es una empresa dedicada a la venta de motores con un alto estandar de calidad para sus clientes.</p>
+                <p>Cada dia mejorando y comprobando que somos el numero #1 en calidad.</p>
             </div>
             <div class="box">
                 <h2>SIGUENOS</h2>
@@ -84,7 +81,7 @@
             </div>
         </div>
         <div class="grupo-2">
-            <small>&copy; 2021 <b>SLee Dw</b> - Todos los Derechos Reservados.</small>
+            <small>&copy; 2022 <b>VAGONZAVOD</b> - Todos los Derechos Reservados.</small>
         </div>
     </footer>
     <!-- end pie de pagina -->
