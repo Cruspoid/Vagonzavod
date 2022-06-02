@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
 # Create your views here.
@@ -51,4 +51,18 @@ class DetalleProducto(DetailView):
             idProducto__icontains=palabra_clave
         )
         return lista
+
+class ListObj(ListView):
+    template_name = 'objetos_admin.html'
+    paginate_by = 5
+    ordering = 'idProducto'
+    context_object_name = 'productos'
     
+    def get_queryset(self):
+
+        palabra_clave = self.request.GET.get("kword",'')
+        
+        lista = Producto.objects.filter(
+            nombre_producto__icontains=palabra_clave
+        )
+        return lista
