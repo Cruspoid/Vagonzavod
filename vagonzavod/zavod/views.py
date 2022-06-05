@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
+from .forms import UserRegisterForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
 
@@ -16,25 +18,18 @@ def Productos(request):
     return render(request, 'productos.html', context)
 
 
-class CreateUser(CreateView):
-    model = Cliente
-    template_name = "registro.html"
-    fields = [
-        'nombre_cliente',
-        'apellido_cliente',
-        'rut_cliente',
-        'email_cliente',
-        'contrasena_cliente',
-        'confirmar_contrasena_cliente',
-        'celular_cliente',
-    ]
-    success_url = reverse_lazy('app_zavod:home')
+# class CreateUser(CreateView):
+#     model = Cliente
+#     template_name = "registro.html"
+#     form_class = UserRegisterForm
+   
+#     success_url = reverse_lazy('app_zavod:home')
     
-    def form_valid(self, form):
-        #logica del proceso
-        cliente = form.save()
-        cliente.save()
-        return super(CreateUser, self).form_valid(form)
+#     def form_valid(self, form):
+#         #logica del proceso
+#         cliente = form.save()
+#         cliente.save()
+#         return super(CreateUser, self).form_valid(form)
 
 class DetalleProducto(DetailView):
     model = Producto
@@ -51,9 +46,19 @@ class DetalleProducto(DetailView):
             idProducto__icontains=palabra_clave
         )
         return lista
+    
+    
+    
+class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
-class ListObj(ListView):
+    def test_func(self):
+            return self.request.user.is_staff
+
+
+class ListObj(StaffRequiredMixin, ListView):
+           
     template_name = 'objetos_admin.html'
+    login_url = reverse_lazy('users_app:user_login')
     paginate_by = 5
     ordering = 'idProducto'
     context_object_name = 'productos'

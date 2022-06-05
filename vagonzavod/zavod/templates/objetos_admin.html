@@ -12,13 +12,18 @@
         <div id="pr" class="justify-content-center ms-auto mb-3">
         <h1 class="d-flex justify-content-center ms-auto">GESTIÓN DE PRODUCTOS </h1>
         <form class="d-flex mb-3 " method="GET">{% csrf_token %}
+          <div class="flex">
+            <a href="#" class="btn btn-success">Agregar Productos</a>
+          </div>
             <div class="d-flex justify-content-end ms-auto">
             <div class="d-flex ">
                 <input type="text" id="kword" name="kword" placeholder="Buscar propducto...">
             </div>
+            
             <div class="d-flex">
                <button type="submit" class="btn btn-success">Buscar</button>
             </div>
+            
             </div>
         </div>
 

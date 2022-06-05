@@ -30,22 +30,40 @@
                   <li class="nav-item ">
                     <a class="nav-link"  href="{% url 'app_zavod:productos' %}">Productos</a>
                   </li>
+                  {% if request.user.is_staff is not False%}
+                  
                   <li class="nav-item ">
                     <a class="btn nav-link"  href="{% url 'app_zavod:obj_adm' %}">Gestion de Productos</a>
                   </li>
-
+                  {%else%}
+                  {% endif %}
                 </ul>
                 <form class="d-flex" style="margin-right: 25%;" role="search">
                   <input class="form-control me-2" type="search" placeholder="Ingrese texto aquí" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Buscar</button>
                   
                 </form>
-                <ul class="navbar-nav mb-lg-0">
-                    <li class="nav-item ">
-                        <a class="nav-link"  href="{% url 'app_zavod:registrar_cliente' %}">Registrarse</a>
-                      </li>
-                </ul>
+                <div class="nav-item dropdown" style="margin-right: 10%;">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{user}}
+                  </a>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    
+
+                    {% if request.user.is_authenticated %}
+                      <li><hr class="dropdown-divider"></li> 
+                      <li><a class="dropdown-item" href="{% url 'users_app:user_logout' %}">Cerrar Sesion</a></li>
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'users_app:user_register' %}">Registrarse</a></li>
+                    
+                    <li><a class="dropdown-item" href="{% url 'users_app:user_login' %}">Iniciar sesion</a></li>
+                    {%endif%}
+                  </ul>
+                </div>
               </div>
+              
             </div>
           </nav>
     </header>
