@@ -1,0 +1,13 @@
+{% extends "./base.html" %}
+<title>{%block title%}Agregar Producto{% endblock %}</title>
+
+{%block content%}
+{%load static%}
+
+<form method="POST">{%csrf_token%}
+{{form.as_p}}
+<button type="submit">xD</button>
+</form>
+
+
+{%endblock%}

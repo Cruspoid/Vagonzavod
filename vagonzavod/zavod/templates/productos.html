@@ -9,7 +9,7 @@
                 <h1>Lista de Motores</h1>
             </div>
             {% for e in producto%}
-          <div class="card-group col card-deck">
+          <div class="card-group col-sm-4 card-deck">
             <div class="card" style="width: 18rem;">
                 <a href="{% url 'app_zavod:detalle_producto' e.idProducto %}"><img src="{{e.image.url}}" id="kword" name="kword"class="card-img-top" alt="..."></a> 
                 <div class="card-body">

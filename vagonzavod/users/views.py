@@ -18,7 +18,7 @@ from .models import User
 class UserRegisterView(FormView):
     template_name = 'registro.html'
     form_class = UserRegisterForm
-    success_url = '/'
+    success_url = reverse_lazy('users_app:user_login')
     
     def form_valid(self, form):
         #

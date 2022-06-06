@@ -10,6 +10,7 @@ urlpatterns = [
     path('detalle_producto/<pk>/', views.DetalleProducto.as_view(), name='detalle_producto'),
 
     path('objetos-admin/', views.ListObj.as_view(), name='obj_adm'),
+    path('add-prd/', views.CreateProduct.as_view(), name='add_prd'),
 
     
 ]

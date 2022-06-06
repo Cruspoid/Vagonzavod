@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, FormView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
-from .forms import UserRegisterForm
+from .forms import ProductRegisterForm, UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
@@ -71,3 +71,17 @@ class ListObj(StaffRequiredMixin, ListView):
             nombre_producto__icontains=palabra_clave
         )
         return lista
+
+class CreateProduct(CreateView):
+    model = Producto
+    template_name = "add_prd.html"
+    form_class = ProductRegisterForm
+   
+    success_url = reverse_lazy('app_zavod:obj_adm')
+    
+    def form_valid(self, form):
+        #logica del proceso
+        producto = form.save()
+        producto.save()
+        return super(CreateProduct, self).form_valid(form)
+
