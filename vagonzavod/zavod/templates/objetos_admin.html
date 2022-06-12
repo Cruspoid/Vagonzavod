@@ -13,7 +13,7 @@
         <h1 class="d-flex justify-content-center ms-auto">GESTIÓN DE PRODUCTOS </h1>
         <form class="d-flex mb-3 " method="GET">{% csrf_token %}
           <div class="flex">
-            <a href="#" class="btn btn-success">Agregar Productos</a>
+            <a href="{% url 'app_zavod:add_prd' %}" class="btn btn-success">Agregar Productos</a>
           </div>
             <div class="d-flex justify-content-end ms-auto">
             <div class="d-flex ">
