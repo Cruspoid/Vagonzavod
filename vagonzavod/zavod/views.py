@@ -73,7 +73,7 @@ class ListObj(StaffRequiredMixin, ListView):
         )
         return lista
 
-class CreateProduct(CreateView):
+class CreateProduct(StaffRequiredMixin, CreateView):
     model = Producto
     template_name = "add_prd.html"
     form_class = ProductRegisterForm
@@ -87,7 +87,7 @@ class CreateProduct(CreateView):
         return super(CreateProduct, self).form_valid(form)
 
 
-class UpdateObj(UpdateView):
+class UpdateObj(StaffRequiredMixin, UpdateView):
     template_name= "update_obj.html"
     model = Producto
     fields = ('__all__')
@@ -98,7 +98,7 @@ class UpdateObj(UpdateView):
         self.object = self.get_object()
         return super().post(request, *args, **kwargs)
 
-class DeleteObj(DeleteView):
+class DeleteObj(StaffRequiredMixin, DeleteView):
     model = Producto
     template_name = "delete.html"
     success_url = reverse_lazy('app_zavod:obj_adm')
