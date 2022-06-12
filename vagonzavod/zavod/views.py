@@ -1,6 +1,6 @@
 from turtle import update
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView, FormView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, FormView, UpdateView, DeleteView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
 from .forms import ProductRegisterForm, UserRegisterForm
@@ -97,3 +97,8 @@ class UpdateObj(UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().post(request, *args, **kwargs)
+
+class DeleteObj(DeleteView):
+    model = Producto
+    template_name = "delete.html"
+    success_url = reverse_lazy('app_zavod:obj_adm')
