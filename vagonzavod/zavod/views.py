@@ -1,5 +1,6 @@
+from turtle import update
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView, FormView
+from django.views.generic import CreateView, DetailView, ListView, FormView, UpdateView
 from .models import Cliente, Producto, Imagenes
 from django.urls import reverse_lazy
 from .forms import ProductRegisterForm, UserRegisterForm
@@ -59,7 +60,7 @@ class ListObj(StaffRequiredMixin, ListView):
            
     template_name = 'objetos_admin.html'
     login_url = reverse_lazy('users_app:user_login')
-    paginate_by = 5
+    paginate_by = 4
     ordering = 'idProducto'
     context_object_name = 'productos'
     
@@ -85,3 +86,14 @@ class CreateProduct(CreateView):
         producto.save()
         return super(CreateProduct, self).form_valid(form)
 
+
+class UpdateObj(UpdateView):
+    template_name= "update_obj.html"
+    model = Producto
+    fields = ('__all__')
+    success_url = reverse_lazy('app_zavod:obj_adm')
+    
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)

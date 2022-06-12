@@ -39,6 +39,8 @@
                     <th scope="col">CANTIDAD</th>
                     <th scope="col">TIPO</th>
                     <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">ACTION</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -53,7 +55,15 @@
                         <td>{{p.tipo_motor}}</td>
                         <td class="desc">{{p.descripcion}}</td>
 
-                        <td><a class="btn btn-warning" href="{% url 'app_zavod:detalle_producto' p.idProducto %}">Ver</a></td>
+                        <td class="form-group">
+                          
+                          
+                          <a class="btn btn-success btn-block" id="btns" style="margin-top: 20%;" href="{% url 'app_zavod:update_prd' p.idProducto %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                          
+                          <a class="btn btn-danger btn-block" id="btns" style="margin-top: 20%;" href="{% url 'app_zavod:detalle_producto' p.idProducto %}"><i class="fa-solid fa-trash"></i></a>
+                          <a class="btn btn-warning btn-block" id="btns" style="margin-top: 20%;" href="{% url 'app_zavod:detalle_producto' p.idProducto %}"><i class="fa-solid fa-eye"></i></a>
+                        </td>
+                        
                   </tr>
                     {% endfor %}
                 </tbody>
@@ -92,5 +102,5 @@
    
 </div>
 
-
+<script src="https://kit.fontawesome.com/84732d52eb.js" crossorigin="anonymous"></script>
 {% endblock content %}
