@@ -5,14 +5,15 @@
 
 
 
-<form class="container" method="GET">{% csrf_token%}
+<form id="iw_form" class="container" method="POST">{% csrf_token%}
 
     <div class="row align-items-center">
 
       <div class="col">
         <div class="card" style="width: 25rem;">
             <a href="https://youtube.com"><img src="{{producto.image.url}}" class="card-img-top" alt="..."></a> 
-            <button type="submit">Comprar</button>
+            <input type="hidden" name="token_ws" />
+            <button id="iw_button" type="submit" disabled>Comprar</button>
           </div>
       </div>
 
@@ -47,7 +48,75 @@
           
              
             </div>
-        </form>
+</form>
+
+<script>
+  const BASE_URL = "https://transbank-api-v2.vercel.app/api"
+  const $form = document.getElementById("iw_form");
+  const $button = document.getElementById("iw_button");
+  //const productName = "{{producto.nombre_producto}}"
+  const productPrice = "{{producto.valor}}";
+
+  async function main() {
+    /*if (!productName || typeof productName !== "string") {
+      console.log("Esta faltando el nombre del producto");
+      return
+    }*/
+
+    if (!productPrice || typeof productPrice !== "string") {
+      console.log("Esta faltando el precio del producto");
+      return
+    }
+
+    const parseProductPrice = parseInt(productPrice);
+
+    if (isNaN(parseProductPrice)) {
+      console.log("El valor del precio en el string al parecer esta conteniendo otros caracteres que no son numeros");
+      return
+    }
+
+    try {
+      const dateNow = Date.now()
+
+      const payload = {
+        buy_order: `ORDER-${dateNow}`,
+        session_id: `SESSION-${dateNow}`,
+        amount: parseProductPrice,
+        return_url: "http://localhost:8000"
+      }
+
+      const fetching = await fetch(
+        `${BASE_URL}/create-payment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      const data = await fetching.json();
+
+      if (data.message !== "OK") {
+        console.log(data);
+        return
+      }
+
+      $form.token_ws.value = data.data.token
+      $form.setAttribute("action", data.data.url);
+      $button.removeAttribute("disabled")
+    }
+
+    catch(e) {
+      console.error(e);
+      console.error("Error al conectarse a la api");
+    }
+
+  }
+
+  main()
+</script>
 
 
       
