@@ -18,6 +18,9 @@ def Productos(request):
     context = {'producto':producto}
     return render(request, 'productos.html', context)
 
+def ValidarCompra(request):
+    return render(request, "validar_compra.html")
+
 
 # class CreateUser(CreateView):
 #     model = Cliente

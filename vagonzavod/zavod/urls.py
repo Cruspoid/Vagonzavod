@@ -13,6 +13,5 @@ urlpatterns = [
     path('add-prd/', views.CreateProduct.as_view(), name='add_prd'),
     path('update-prd/<pk>', views.UpdateObj.as_view(), name='update_prd'),
     path('delete-prd/<pk>', views.DeleteObj.as_view(), name='delete_prd'),
-
-    
+    path("validar-compra", views.ValidarCompra, name="validar_compra")
 ]
