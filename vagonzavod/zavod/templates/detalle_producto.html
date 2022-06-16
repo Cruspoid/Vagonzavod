@@ -13,7 +13,13 @@
         <div class="card" style="width: 25rem;">
             <a href="https://youtube.com"><img src="{{producto.image.url}}" class="card-img-top" alt="..."></a> 
             <input type="hidden" name="token_ws" />
+            {% if request.user.is_authenticated %}
             <button id="iw_button" type="submit" disabled>Comprar</button>
+            {%else%}
+            <button type="submit" disabled>Comprar</button>
+            <small id="id_peso" class="form-text text-muted">Debe tener una sesión iniciada para realizar compra.</small>
+
+            {%endif%}
           </div>
       </div>
 
